@@ -1,0 +1,603 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Poppins', 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    position: relative;
+}
+
+/* Декоративные круги на фоне */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    animation: float 20s linear infinite;
+    z-index: 0; /* Добавлено: чтобы не перекрывать контент */
+}
+
+@keyframes float {
+    from {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    to {
+        transform: translate(-50px, -50px) rotate(360deg);
+    }
+}
+
+/* Контейнер для таблицы - шире чем для формы */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1);
+    padding: 0;
+    position: relative;
+    animation: slideUp 0.5s ease-out;
+    overflow-x: auto;
+    z-index: 1; /* Добавлено: чтобы быть поверх фона */
+}
+
+/* Принудительное выравнивание таблицы */
+.user-table {
+    width: 100%;  /* Таблица на всю ширину контейнера */
+    border-collapse: collapse;
+    background: white;
+}
+
+/* Выравнивание заголовков */
+.user-table th {
+    text-align: left;  /* Текст в заголовках слева */
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+    font-weight: 600;
+    color: #333;
+}
+
+/* Выравнивание ячеек */
+.user-table td {
+    text-align: left;  /* Текст в ячейках слева */
+    padding: 14px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+/* Если хотите ID по центру */
+.user-table td:first-child {
+    text-align: center;
+    font-weight: 600;
+    color: #667eea;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Заголовок с градиентом */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 30px;
+    border-radius: 24px 24px 0 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.header h2 {
+    color: white;
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.header p {
+    color: rgba(255,255,255,0.9);
+    margin: 8px 0 0 0; /* Исправлено: убран лишний margin-top */
+    font-size: 14px;
+}
+
+/* Кнопка добавления пользователя */
+.btn-add {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.3);
+    cursor: pointer; /* Добавлено: для интерактивности */
+    flex-shrink: 0; /* Добавлено: предотвращает сжатие кнопки */
+}
+
+.btn-add:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+}
+
+/* Стили для таблицы */
+.table-wrapper {
+    padding: 30px;
+    overflow-x: auto;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: separate; /* Изменено с collapse на separate */
+    border-spacing: 0; /* Добавлено: убираем расстояние между ячейками */
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.user-table thead {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+}
+
+.user-table th {
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e0e0e0;
+    white-space: nowrap; /* Добавлено: предотвращает перенос текста в заголовках */
+}
+
+.user-table td {
+    padding: 14px 20px;
+    color: #555;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle; /* Изменено с top на middle для лучшего выравнивания */
+}
+
+.user-table tbody tr:hover {
+    background: #f8f9fa;
+    transition: background 0.3s ease;
+}
+
+.user-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Стили для действий (кнопки в таблице) */
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center; /* Добавлено: выравнивание по центру */
+}
+
+.btn-edit, .btn-delete {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap; /* Добавлено: предотвращает перенос текста */
+}
+
+.btn-edit {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-edit:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+}
+
+.btn-delete {
+    background: #f44336;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #da190b;
+    transform: translateY(-1px);
+}
+
+/* Форма удаления (inline) */
+.delete-form {
+    display: inline;
+}
+
+/* Сообщение если нет пользователей */
+.empty-message {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+    font-size: 16px;
+}
+
+.empty-message p {
+    margin-top: 10px;
+}
+
+/* Стили для формы */
+.form-label {
+    width: 150px;
+    min-width: 150px; /* Добавлено: минимальная ширина */
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+    font-weight: 600;
+    color: #333;
+    font-size: 15px;
+    text-align: right;
+    padding: 14px 20px !important;
+    vertical-align: middle; /* Добавлено: выравнивание по центру */
+}
+
+.user-table td {
+    padding: 14px 20px;
+    vertical-align: middle; /* Изменено с top на middle */
+}
+
+.user-table input[type="text"],
+.user-table input[type="number"] {
+    width: 100%;
+    max-width: 350px;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    transition: all 0.3s ease;
+    background: #fafafa;
+    display: block; /* Добавлено: для правильного отображения */
+}
+
+.user-table input[type="text"]:hover,
+.user-table input[type="number"]:hover {
+    background: white;
+    border-color: #c0c0c0;
+}
+
+.user-table input[type="text"]:focus,
+.user-table input[type="number"]:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.hint {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+}
+
+.form-actions {
+    background: #fafafa;
+}
+
+.form-actions .buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 130px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ripple эффект */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Кнопка Сохранить (Primary) */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Кнопка Отмена (Cancel) */
+.btn-cancel {
+    background: #f5f5f5;
+    color: #666;
+    border: 1px solid #e0e0e0;
+}
+
+.btn-cancel:hover {
+    background: #e8e8e8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    color: #333;
+}
+
+.btn-cancel:active {
+    transform: translateY(0);
+}
+
+
+.form-container {
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 130px;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.btn-cancel {
+    background: #f5f5f5;
+    color: #666;
+    border: 1px solid #e0e0e0;
+}
+
+.btn-cancel:hover {
+    background: #e8e8e8;
+    transform: translateY(-2px);
+}
+
+/* Адаптивность для формы */
+@media (max-width: 768px) {
+    .form-label {
+        width: 100%;
+        min-width: auto; /* Изменено: убираем min-width на мобильных */
+        display: block;
+        text-align: left;
+        padding: 10px 12px !important; /* Изменено: меньший отступ */
+    }
+
+    .user-table,
+    .user-table tbody,
+    .user-table tr,
+    .user-table td,
+    .user-table th {
+        display: block;
+        width: 100%;
+    }
+
+    .user-table th,
+    .user-table td {
+        text-align: left;
+        padding: 10px 12px; /* Изменено: меньший отступ */
+    }
+
+    .user-table input[type="text"],
+    .user-table input[type="number"] {
+        max-width: 100%;
+    }
+
+    .btn {
+        min-width: auto; /* Изменено: убираем min-width на мобильных */
+        padding: 10px 20px; /* Изменено: меньший отступ */
+    }
+}
+
+/* Адаптивность для таблицы */
+@media (max-width: 768px) {
+    .container {
+        margin: 0;
+        border-radius: 16px; /* Добавлено: скругление на мобильных */
+    }
+
+    .table-wrapper {
+        padding: 15px; /* Изменено: меньший отступ */
+    }
+
+    .user-table th,
+    .user-table td {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 5px;
+        align-items: stretch; /* Изменено: кнопки на всю ширину */
+    }
+
+    .btn-edit, .btn-delete {
+        padding: 8px 12px; /* Изменено: больший отступ для мобильных */
+        font-size: 12px;
+        justify-content: center; /* Добавлено: центрирование текста */
+        width: 100%; /* Добавлено: кнопки на всю ширину */
+    }
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        border-radius: 16px 16px 0 0; /* Изменено: подгонка под скругление */
+    }
+
+    .header h2 {
+        font-size: 22px;
+    }
+}
+
+/* Адаптивность для очень маленьких экранов */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 15px;
+    }
+
+    .user-table {
+        font-size: 12px;
+    }
+
+    .user-table th,
+    .user-table td {
+        padding: 8px 10px;
+    }
+
+    .btn-add {
+        width: 100%; /* Добавлено: кнопка на всю ширину */
+        justify-content: center; /* Добавлено: центрирование */
+    }
+}
+
+/* Анимация появления строк таблицы */
+.user-table tbody tr {
+    animation: fadeInRow 0.3s ease-out forwards;
+    opacity: 0;
+}
+
+.user-table tbody tr:nth-child(1) { animation-delay: 0.05s; }
+.user-table tbody tr:nth-child(2) { animation-delay: 0.1s; }
+.user-table tbody tr:nth-child(3) { animation-delay: 0.15s; }
+.user-table tbody tr:nth-child(4) { animation-delay: 0.2s; }
+.user-table tbody tr:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes fadeInRow {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

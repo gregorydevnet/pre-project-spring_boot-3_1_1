@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление пользователя</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <!-- Добавлен header для соответствия стилям -->
+    <div class="header">
+        <div>
+            <h2>➕ Добавление пользователя</h2>
+            <p>Заполните все поля для создания нового пользователя</p>
+        </div>
+        <a th:href="@{/users}" class="btn-add">← Назад к списку</a>
+    </div>
+
+    <!-- Форма в таблице для соответствия вашему CSS -->
+    <div class="table-wrapper">
+        <form th:action="@{/users/add}" method="post">
+            <table class="user-table">
+                <tbody>
+                <tr>
+                    <td class="form-label">Имя:</td>
+                    <td>
+                        <input type="text" name="name" required placeholder="Введите имя">
+                        <span class="hint">От 2 до 50 символов</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">Фамилия:</td>
+                    <td>
+                        <input type="text" name="surname" required placeholder="Введите фамилию">
+                        <span class="hint">От 2 до 50 символов</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">Возраст:</td>
+                    <td>
+                        <input type="number" name="age" required min="0" max="150" placeholder="0-150">
+                        <span class="hint">От 0 до 150 лет</span>
+                    </td>
+                </tr>
+                <tr class="form-actions">
+                    <td colspan="2">
+                        <div class="buttons">
+                            <button type="submit" class="btn btn-primary">💾 Сохранить</button>
+                            <a th:href="@{/users}" class="btn btn-cancel">❌ Отмена</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

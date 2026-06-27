@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование пользователя</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <!-- Заголовок с градиентом как в add.html -->
+    <div class="header">
+        <div>
+            <h2>✏️ Редактирование пользователя</h2>
+            <p>Измените данные пользователя и сохраните изменения</p>
+        </div>
+        <a th:href="@{/users}" class="btn-add">← Назад к списку</a>
+    </div>
+
+    <!-- Форма внутри контейнера -->
+    <div class="form-container">
+        <form th:action="@{/users/edit}" method="post">
+            <!-- Скрытое поле для ID -->
+            <input type="hidden" name="id" th:value="${user.id}">
+
+            <div class="form-group">
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" th:value="${user.name}" required placeholder="Введите имя">
+            </div>
+
+            <div class="form-group">
+                <label for="surname">Фамилия:</label>
+                <input type="text" id="surname" name="surname" th:value="${user.surname}" required placeholder="Введите фамилию">
+            </div>
+
+            <div class="form-group">
+                <label for="age">Возраст:</label>
+                <input type="number" id="age" name="age" th:value="${user.age}" required min="0" max="150" placeholder="0-150">
+            </div>
+
+            <div class="buttons">
+                <button type="submit" class="btn btn-primary">💾 Обновить</button>
+                <a th:href="@{/users}" class="btn btn-cancel">❌ Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
